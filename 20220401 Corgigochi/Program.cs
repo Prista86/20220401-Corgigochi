@@ -6,8 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 //Problemi:
-    // Come utilizzare una funzioen dentro una classe
-    // come mettere un ReadLine con scadenza temporale
+// Come utilizzare una funzioen dentro una classe
+// come mettere un ReadLine con scadenza temporale
 
 namespace _20220401_Corgigochi
 {
@@ -16,22 +16,31 @@ namespace _20220401_Corgigochi
         static void Main(string[] args)
         {
             string giocatore = "Luca";
-            int numero = 1;
-            int dormire = numero;
-            int mangiare = numero;
-            int pulire = numero;
-            int coccole = numero;
+            int giornata = 0;
+            bool morto = false;
+            int modifTempi = 1;
+            var rnd = new Random();
+            int tempoMin = 10 * modifTempi;
+            int tempoMax = 20 * modifTempi;
+            int tempoDay = 60 * modifTempi;
+            int TempoCicloWhile = 1000;
+
+            int dormire = tempoDay;
+            int mangiare =rnd.Next(tempoMin, tempoMax);
+            int pulire =rnd.Next(tempoMin, tempoMax);
+            int coccole =rnd.Next(tempoMin, tempoMax);
+
 
             Corgi corgi = new Corgi();
             corgi.Nome = "Roosvelt";
-            corgi.Felice = 0;
-            corgi.Triste = 0;
-            corgi.Arrabbiato = 0;
-            corgi.Depresso = 0;
-            corgi.Dormire = 0;
-            corgi.Mangiare = 0;
-            corgi.Coccole = 0;
-            corgi.Pulire = 0;
+            //corgi.Felice = 0;
+            corgi.sFelice = "";
+            corgi.sTriste = "";
+            corgi.sArrabbiato = "";
+            corgi.sDepresso = "";
+
+
+
 
 
             //Console.WriteLine("Ciao! Come ti chiami???");
@@ -54,59 +63,65 @@ namespace _20220401_Corgigochi
             //    Thread.Sleep(1000);
             //}           
 
-            while (true)
+            corgi.StampaCorgi();
+            while (!morto)
             {
+                Console.SetCursorPosition(79, 21);
                 dormire--;
                 mangiare--;
                 pulire--;
                 coccole--;
+                giornata++;
+
+
+
                 if (dormire == 0)
                 {
-                    corgi.StampaCorgi();
-                    corgi.VoglioDormire();
-                    dormire = numero;
+                    //Console.Beep();
+                    corgi.VoglioDormire(giocatore, giornata);
+                    dormire = tempoDay;
+                    mangiare = rnd.Next(tempoMin, tempoMax);
+                    pulire = rnd.Next(tempoMin, tempoMax);
+                    coccole = rnd.Next(tempoMin, tempoMax);
                 }
-                
+
                 if (mangiare == 0)
                 {
-                    corgi.StampaCorgi();
-                    corgi.VoglioMangiare();                    
-                    mangiare = numero;
-                }
-                if (pulire == 0)
-                {
-                    corgi.StampaCorgi();
-                    corgi.DeviPulire();                   
-                    pulire = numero;
+                    //Console.Beep();
+                    corgi.VoglioMangiare(giocatore, giornata);
+                    mangiare =rnd.Next(tempoMin, tempoMax);
                 }
                 if (coccole == 0)
                 {
-                    corgi.StampaCorgi();
+                    //Console.Beep();
+                    corgi.VoglioCoccole(giocatore, giornata);
+                    pulire =rnd.Next(tempoMin, tempoMax);
 
-                    corgi.VoglioCoccole();
-                    coccole = numero;
+                }
+                if (pulire == 0)
+                {
+                    //Console.Beep();
+                    corgi.DeviPulire(giocatore, giornata);
+                    coccole =rnd.Next(tempoMin, tempoMax);
+
                 }
 
-                if (corgi.Dormire + corgi.Mangiare+corgi.Pulire+corgi.Coccole < 10)
+                if (corgi.UmoreCorgi > 100)
                 {
-                    corgi.Felice = 99;
+                    morto = true;
                 }
-                if (corgi.Dormire + corgi.Mangiare + corgi.Pulire + corgi.Coccole > 10)
-                {
-                    corgi.Triste = 99;
-                }
-                if (corgi.Dormire + corgi.Mangiare + corgi.Pulire + corgi.Coccole > 20)
-                {
-                    corgi.Arrabbiato = 99;
-                }
-                if (corgi.Dormire + corgi.Mangiare + corgi.Pulire + corgi.Coccole > 30)
-                {
-                    corgi.Depresso = 99;
-                }
-                Console.Clear();
-                Console.SetCursorPosition(25, 17);
-                //Thread.Sleep(1000);
+                Thread.Sleep(TempoCicloWhile);
             }
+            //Console.Beep();
+            //Console.Beep();
+            Console.WriteLine("E' morto..");
+            Console.ReadKey();
+
+        }
+        public double GetRandomNumber(double minimum, double maximum)
+        {
+            Random random = new Random();
+            return random.NextDouble() * (maximum - minimum) + minimum;
         }
     }
 }
