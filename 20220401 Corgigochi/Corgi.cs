@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace _20220401_Corgigochi
 {
-    class Corgi
+    public class Corgi
     {
         public string Nome { get; set; }
         public int ProbDormire { get; set; }
@@ -25,288 +25,40 @@ namespace _20220401_Corgigochi
         public string StringProbMangiare { get; set; }
         public string StringProbCoccole { get; set; }
         public string StringProbPulire { get; set; }
-        public string DateLastPlay { get; set; }
+        public int modUmoreCorgi { get; set; }
+        public int Giornata { get; set; }
+        
 
-
-        int modUmoreCorgi = 0;
-        int timeHide = 2500;
-        int giornata = 0;
-
-
-
-        //AZIONI giocatore
-        public void FaiDormire(string giocatore)
-        {
-            if (this.ProbDormire < 1)
-            {
-                giornata++;
-                Console.SetCursorPosition(46, 11);
-                Console.WriteLine(giocatore+" non devo mica Dormire!!!                  ");
-                Console.SetCursorPosition(79, 21);
-                Console.WriteLine(" ");
-                Thread.Sleep(timeHide);
-                Console.SetCursorPosition(46, 11);
-                Console.WriteLine("                           ");
-            }
-            else
-            {
-                Console.SetCursorPosition(43, 11);
-                Console.WriteLine($"Buona notte {giocatore} a domani!");
-                Console.SetCursorPosition(79, 21);
-                Console.WriteLine(" ");
-                Thread.Sleep(timeHide);
-                this.ProbDormire -= 5;
-                StampaCorgi();
-                Console.SetCursorPosition(35, 24);
-                Console.WriteLine($"{this.Nome} Va a dormire! La giornata n° {giornata} è finita!");
-                Console.SetCursorPosition(79, 21);
-                this.Necessita = "";
-                Console.SetCursorPosition(79, 21);
-                Thread.Sleep(timeHide);
-                Console.SetCursorPosition(35, 24);
-                Console.WriteLine("                                                                    ");
-                Console.SetCursorPosition(79, 21);
-                Console.WriteLine(" ");
-                Console.SetCursorPosition(45, 11);
-                Console.WriteLine("                                 ");
-            }
-
-        }
-        public void FaiMangiare(string giocatore)
-        {
-            if (this.ProbMangiare < 1)
-            {
-                Console.SetCursorPosition(45, 11);
-                Console.WriteLine(giocatore+" non devo mangiare!!!              ");
-                Console.SetCursorPosition(79, 21);
-                Console.WriteLine(" ");
-                Thread.Sleep(timeHide);
-                Console.SetCursorPosition(45, 11);
-                Console.WriteLine("                                ");
-            }
-            else
-            {
-
-                Console.SetCursorPosition(43, 11);
-                Console.WriteLine($"Bravo {giocatore} mi sono saziato un po'!");
-                Console.SetCursorPosition(79, 21);
-                Console.WriteLine(" ");
-                Thread.Sleep(timeHide);
-                this.ProbMangiare -= 5;
-                StampaCorgi();
-                Console.SetCursorPosition(45, 11);
-                Console.WriteLine("                                 ");
-                Console.SetCursorPosition(35, 24);
-                Console.WriteLine($"Bene! {this.Nome} ha mangiato!");
-                Console.SetCursorPosition(79, 21);
-                this.Necessita = "";
-                Console.SetCursorPosition(79, 21);
-                Thread.Sleep(timeHide);
-                Console.SetCursorPosition(35, 24);
-                Console.WriteLine("                                                                    ");
-                Console.SetCursorPosition(79, 21);
-                Console.WriteLine(" ");
-
-            }
-
-
-        }
-        public void Pulisci(string giocatore)
-        {
-            if (this.ProbPulire < 1)
-            {
-                Console.SetCursorPosition(47, 11);
-                Console.WriteLine("Non ho mica Cagato!!!         ");
-                Console.SetCursorPosition(79, 21);
-                Console.WriteLine(" ");
-                Thread.Sleep(timeHide);
-                Console.SetCursorPosition(47, 11);
-                Console.WriteLine("                                ");
-                Console.SetCursorPosition(79, 21);
-            }
-            else
-            {
-                Console.SetCursorPosition(35, 11);
-                Console.WriteLine($"Grazie {giocatore} ora non sento più puzza di mérd@!");
-                Console.SetCursorPosition(79, 21);
-                Console.WriteLine(" ");
-                Thread.Sleep(timeHide);
-                this.ProbPulire -= 5;
-                StampaCorgi();
-                Console.SetCursorPosition(45, 11);
-                Console.WriteLine("                                 ");
-                Console.SetCursorPosition(35, 24);
-                Console.WriteLine($"Ottimo! Hai pulito la cacca di {this.Nome}!");
-                Console.SetCursorPosition(79, 21);
-                this.Necessita = "";
-                Console.SetCursorPosition(79, 21);
-                Thread.Sleep(timeHide);
-                Console.SetCursorPosition(35, 24);
-                Console.WriteLine("                                                                    ");
-                Console.SetCursorPosition(79, 21);
-                Console.WriteLine(" ");
-
-            }
-
-
-
-        }
-        public void Coccolare(string giocatore)
-        {
-            modUmoreCorgi -= 10;
-            this.ProbPulire -= 2;
-            this.ProbDormire -= 2;
-            //this.ProbCoccole -= 2;
-            this.ProbMangiare -= 2;
-            Console.SetCursorPosition(40, 11);
-            Console.WriteLine($"Bravo {giocatore} Ne avevo proprio bisogno!");
-            Console.SetCursorPosition(79, 21);
-            Console.WriteLine(" ");
-            Thread.Sleep(timeHide);
-            Console.SetCursorPosition(40, 11);
-            Console.WriteLine("                                               ");
-            this.ProbCoccole -= 5;
-            StampaCorgi();
-            Console.SetCursorPosition(45, 11);
-            Console.WriteLine("                                 ");
-            Console.SetCursorPosition(35, 24);
-            Console.WriteLine($"Bravo! Hai coccolato {this.Nome}!");
-            Console.SetCursorPosition(79, 21);
-            this.Necessita = "";
-            Console.SetCursorPosition(79, 21);
-            Thread.Sleep(timeHide);
-            Console.SetCursorPosition(35, 24);
-            Console.WriteLine("                                                                    ");
-            Console.SetCursorPosition(79, 21);
-            Console.WriteLine(" ");
-
-
-
-        }
-        public void GiocaConLui(string giocatore)
-        {
-            modUmoreCorgi -= 30;
-            this.ProbPulire -= 3;
-            this.ProbDormire -= 3;
-            this.ProbCoccole -= 3;
-            this.ProbMangiare -= 3;
-            Console.SetCursorPosition(35, 11);
-            Console.WriteLine($"Grazie!! {giocatore} è sempre bello giocare insieme!!");
-            Console.SetCursorPosition(79, 21);
-            Thread.Sleep(timeHide);
-            Console.SetCursorPosition(35, 11);
-            Console.WriteLine("                                                            ");
-            Console.SetCursorPosition(35, 24);
-            Console.WriteLine($"Bello! Hai giocato con {this.Nome}!");
-            Console.SetCursorPosition(79, 21);
-            this.Necessita = "";
-            Console.SetCursorPosition(79, 21);
-            Thread.Sleep(timeHide);
-            Console.SetCursorPosition(35, 24);
-            Console.WriteLine("                                                                    ");
-            Console.SetCursorPosition(79, 21);
-            Console.WriteLine(" ");
-            Console.SetCursorPosition(45, 11);
-            Console.WriteLine("                                 ");
-
-        }
-        public void FaiNulla(string giocatore)
-        {
-            modUmoreCorgi += 20;
-            Console.SetCursorPosition(35, 11);
-            Console.WriteLine($"No ma bravo {giocatore} fregatene proprio di me..!");
-            Console.SetCursorPosition(79, 21);
-            Thread.Sleep(timeHide);
-            Console.SetCursorPosition(35, 11);
-
-        }
-        public void AzioniPratica( string giocatore)
-        {
-            Console.SetCursorPosition(79, 21);
-            string azione = Console.ReadLine();
-            int i = 1;
-            while (i > 0)
-            {
-                if (azione == "1" || azione == "2" || azione == "3" || azione == "4" || azione == "5" || azione == "6" || azione == "7")
-                {
-                    i = 0;
-                }
-                else
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Devi inserire un numero da 1 a 7");
-                    azione = Console.ReadLine();
-                }
-            }
-            bool n = int.TryParse(azione, out int azioneNum);
-            switch (azioneNum)
-            {
-                case 1:
-                    FaiDormire( giocatore);
-                    break;
-                case 2:
-                    FaiMangiare(giocatore);
-                    break;
-                case 3:
-                    Coccolare(giocatore);
-                    break;
-                case 4:
-                    Pulisci(giocatore);
-                    break;
-                case 5:
-                    GiocaConLui(giocatore);
-                    break;
-                case 6:
-                    FaiNulla(giocatore);
-                    break;
-                case 7:
-                    EsciDalGioco(giocatore);
-                    break;
-                default:
-                    while (azioneNum != 1 || azioneNum != 2 || azioneNum != 3 || azioneNum != 4 || azioneNum != 5 || azioneNum != 6 || azioneNum != 7)
-                    {
-                        Console.SetCursorPosition(35, 25);
-                        Console.WriteLine("Devi inserire un numero da 1 a 6");
-                        Console.ReadKey();
-                    }
-                    break;
-            }
-        }
-
-        //************************************************************************************************************
 
         //Azioni Corgi
-        public void VoglioDormire(string giocatore)
+        public void VoglioDormire(Corgi corgi, string giocatore, int timeHide, string dateLastPlay)
         {
             this.Necessita = $"   {giocatore} ho sonno!";
             this.ProbDormire += 5;
             StampaCorgi();
-            AzioniPratica( giocatore);
         }
-        public void VoglioMangiare(string giocatore)
+        public void VoglioMangiare(Corgi corgi, string giocatore, int timeHide, string dateLastPlay)
         {
             this.Necessita = $"    {giocatore} ho fame!";
             this.ProbMangiare += 5;
             StampaCorgi();
-            AzioniPratica( giocatore);
         }
-        public void DeviPulire(string giocatore)
+        public void DeviPulire(Corgi corgi, string giocatore, int timeHide, string dateLastPlay)
         {
             this.Necessita = $"   {giocatore} ho cagato..";
             this.ProbPulire += 5;
             StampaCorgi();
-            AzioniPratica( giocatore);
         }
-        public void VoglioCoccole(string giocatore)
+        public void VoglioCoccole(Corgi corgi, string giocatore, int timeHide, string dateLastPlay)
         {
             this.Necessita = $"{giocatore} voglio le coccole!!";
             this.ProbCoccole += 5;
             StampaCorgi();
-            AzioniPratica(giocatore);
         }
 
         public void StampaCorgi()
         {
+            
             CalcolaUmoreCorgi();
             if (this.sFelice.Length < 1)
             {
@@ -385,29 +137,8 @@ namespace _20220401_Corgigochi
             Console.WriteLine($@"            |____|                   |____|");
             Console.WriteLine();
             Console.WriteLine($@"                                               {this.Necessita}");
-            Console.WriteLine();
-            Console.SetCursorPosition(35, 13);
-            Console.WriteLine(" _____________________________________________");
-            Console.SetCursorPosition(35, 14);
-            Console.WriteLine("|                                             |");
-            Console.SetCursorPosition(35, 15);
-            Console.WriteLine("|  1. Mandalo a dormire.                      |");
-            Console.SetCursorPosition(35, 16);
-            Console.WriteLine("|  2. Dargli da mangiare.                     |");
-            Console.SetCursorPosition(35, 17);
-            Console.WriteLine("|  3. Fagli le coccole.                       |");
-            Console.SetCursorPosition(35, 18);
-            Console.WriteLine("|  4. Pulisci la cacca.                       |");
-            Console.SetCursorPosition(35, 19);
-            Console.WriteLine("|  5. Gioca con lui.                          |");
-            Console.SetCursorPosition(35, 20);
-            Console.WriteLine("|  6. Non  fare nulla.                     ___|");
-            Console.SetCursorPosition(35, 21);
-            Console.WriteLine("|  7. Esci dal gioco.                     |   |");
-            Console.SetCursorPosition(35, 22);
-            Console.WriteLine("|  Vuoi eseguire una di queste Azioni?    |   |");
-            Console.SetCursorPosition(35, 23);
-            Console.WriteLine("|_________________________________________|___|");
+            Console.WriteLine("                                        Premi Invio per compiere una azione! ");
+            
 
 
         }
@@ -422,7 +153,7 @@ namespace _20220401_Corgigochi
                 sArrabbiato = "";
                 sDepresso = "";
             }
-            else if (this.UmoreCorgi + modUmoreCorgi > -20 && this.UmoreCorgi <= -10)
+            else if (this.UmoreCorgi + this.modUmoreCorgi > -20 && this.UmoreCorgi <= -10)
             {
                 sFelice = $"{(char)2}{(char)178}";
                 sTriste = "";
@@ -485,14 +216,14 @@ namespace _20220401_Corgigochi
                 sTriste = "";
                 sArrabbiato = "";
             }
-            else if (this.UmoreCorgi + modUmoreCorgi > 70 && this.UmoreCorgi <= 80)
+            else if (this.UmoreCorgi + this.modUmoreCorgi > 70 && this.UmoreCorgi <= 80)
             {
                 sDepresso = $"{(char)1}{(char)178}";
                 sFelice = "";
                 sTriste = "";
                 sArrabbiato = "";
             }
-            else if (this.UmoreCorgi + modUmoreCorgi > 80 && this.UmoreCorgi <= 90)
+            else if (this.UmoreCorgi + this.modUmoreCorgi > 80 && this.UmoreCorgi <= 90)
             {
                 sDepresso = $"{(char)1}{(char)179}";
                 sFelice = "";
@@ -500,47 +231,8 @@ namespace _20220401_Corgigochi
                 sArrabbiato = "";
             }
         }
-        public void SalvaLife(string giocatore)
-        {
-            StreamWriter sw = new StreamWriter("C:\\Users\\LukePC\\Desktop\\Camerana\\C# Camerana\\Esercizi Luca\\20220401 Corgigochi\\InfoCorgi.txt", false, Encoding.ASCII);
-            sw.WriteLine(this.Nome);
-            sw.WriteLine(this.Necessita);
-            sw.WriteLine(this.ProbDormire);
-            sw.WriteLine(this.ProbMangiare);
-            sw.WriteLine(this.ProbCoccole);
-            sw.WriteLine(this.ProbPulire);
-            sw.WriteLine(this.UmoreCorgi);
-            sw.WriteLine(giocatore);
-            DateTime dt = DateTime.Now;
-            this.DateLastPlay = dt.ToString();
-            sw.WriteLine(this.DateLastPlay);
-            sw.Close();
-            
-            
-        }
-        public void EsciDalGioco(string giocatore)
-        {
-            Console.Clear();
-            Console.WriteLine("Sei sicuro che vuoi uscire? ");
-            string scelta = Console.ReadLine();
-            if (scelta == "S") 
-            {
-                Console.WriteLine("Vuoi salvare la partita?");
-                scelta = Console.ReadLine();
-                if (scelta == "S") 
-                {
-                    SalvaLife(giocatore);
-                }
-                else
-                {
-                    Environment.Exit(0);
-                }
-            }
-            else
-            {
-                Environment.Exit(0);
-            }
-        }
+        
+        
 
 
     }
