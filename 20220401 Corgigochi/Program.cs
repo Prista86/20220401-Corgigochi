@@ -237,7 +237,7 @@ namespace _20220401_Corgigochi
                 }
                 else if (Console.KeyAvailable == false)
                 {
-                    //Console.WriteLine("NON Press");
+                    //Console.WriteLine("NON Press ");
                 }
 
                 Thread.Sleep(TempoCicloWhile);
