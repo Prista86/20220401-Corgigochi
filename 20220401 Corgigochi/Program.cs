@@ -224,7 +224,7 @@ namespace _20220401_Corgigochi
                 else if (corgi.Giornata > 4)
                 {
                     Console.Clear();
-                    Console.WriteLine("Bravo lo hai tenuto in vita per 5 giorni! Hai vinto!");
+                    Console.WriteLine("Bravo lo hai tenuto in vita per 5 giorni! Hai vinto! ");
                     Console.ReadKey();
                     esci = true;
                 }
